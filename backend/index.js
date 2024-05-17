@@ -150,7 +150,7 @@ app.get('/call1',(req,res)=>{
   ans1 = 0;
   ans2 = 0;
   console.log(process.env.emailPassword);
-  res.send({result:"success"})
+  res.send({result:process.env.emailPassword})
 })
 
 app.listen(port, () => {

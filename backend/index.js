@@ -4,9 +4,11 @@ const express = require("express");
 
 // import cors from 'cors';
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 // // // Enable CORS for all routes
 const app = express();
+
 app.use(cors());
 
 // const port = 3001;

@@ -50,6 +50,13 @@ const App=()=> {
     }
   };
 
+  const calll=()=>{
+    fetch('https://email-optimization.vercel.app/call')
+//   // fetch("http:localhost:3001/send-mail")
+  .then(res=>res.json())
+.then(json=>console.log(json))
+  }
+
   return (
     <div>
       <h2>A/B Test Form</h2>
@@ -90,6 +97,7 @@ const App=()=> {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <button onClick={calll}>Get Analysis</button>
     </div>
   );
 }

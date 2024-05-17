@@ -30,6 +30,23 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+function shuffle(array) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+const emails = ['21131a05n8@gvpce.ac.in',
+'simhadrivenkatvivek@gmail.com','ramyarani0214@gmail.com',
+'venkatviveksimhadri@gmail.com']
+
+const midIndex = Math.ceil(shuffled.length / 2);
+const  recipientEmail1=  shuffled.slice(0, midIndex);
+  const  recipientEmail2= shuffled.slice(midIndex);
+
+const shuffled = shuffle(emails)
 // Tracking pixel URL
 const trackingPixelUrl = 'https://email-optimization.vercel.app/tracking-pixel/';
 
@@ -61,10 +78,17 @@ const sendEmail = (recipientEmail, subject, content) => {
 
 // Example email details
 
-let ans=0;
+let ans1=0, ans2=0;
 app.get('/tracking-pixel/:name', (req, res) => {
   // Create a 1x1 transparent pixel (white)
-  ans=ans+1;
+  const {name} = req.params
+  if(recipientEmail1.includes){
+    ans1=ans1+1
+  }
+  else{
+    ans2=ans2+1;
+  }
+ 
   const pixelBuffer = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
 
   // Set appropriate headers
@@ -81,12 +105,6 @@ app.get('/tracking-pixel/:name', (req, res) => {
 app.post('/send-email', async (req, res) => {
   try {
     const { subject1, content1, subject2, content2 } = req.body;
-    const  recipientEmail1= [
-      '21131a05n8@gvpce.ac.in',
-      'simhadrivenkatvivek@gmail.com']
-      const  recipientEmail2= [
-        'ramyarani0214@gmail.com',
-        'venkatviveksimhadri@gmail.com']
 // const subject = 'hi';
 // const content = 'hello';
 //     console.log("Sending email to:", recipientEmail);
@@ -99,9 +117,7 @@ app.post('/send-email', async (req, res) => {
 });
 
 app.get('/call',(req,res)=>{
-  console.log(ans);
-  ans=ans+1;
-  res.send({count:ans})
+  res.send({exp1:ans1,exp2:ans2})
 })
 
 app.listen(port, () => {

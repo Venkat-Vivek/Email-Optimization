@@ -1,5 +1,6 @@
 
 import React, {  useState} from 'react';
+import axios from 'axios'
 import './App.css';
 
 const App=()=> {
@@ -38,10 +39,15 @@ const App=()=> {
   };
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     // Logic to handle form submission (e.g., send data to backend)
-    console.log('Form submitted with data:', formData);
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://email-optimization.vercel.app/send-email', formData);
+      console.log('Form submitted successfully:', response.data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (

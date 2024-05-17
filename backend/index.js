@@ -30,7 +30,8 @@ const transporter = nodemailer.createTransport({
 const trackingPixelUrl = 'https://email-optimization.vercel.app/tracking-pixel'; // Replace with your actual tracking pixel URL
 
 // Function to send email
-async function sendEmail(recipientEmail, subject, content) {
+ function sendEmail(recipientEmail, subject, content) {
+  console.log("I am send Email Function")
   // console.log(recipientEmail)
   // console.log(subject)
   // console.log(content)
@@ -44,7 +45,7 @@ async function sendEmail(recipientEmail, subject, content) {
     `,
   };
 
-  await transporter.sendMail(mailOptions, (error, info) => {
+   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(error);
       return error;
@@ -61,9 +62,8 @@ const content='hello'
 
 app.get('/tracking-pixel', async (req, res) => {
   console.log("+1");
-  const ress=await sendEmail(recipientEmail, subject, content)
-  console.log(ress);
-  res.send({success : ress,mail:recipientEmail}); 
+  sendEmail(recipientEmail, subject, content)
+  res.send({mail:recipientEmail}); 
   // res.sendStatus(200); // Send a successful response (transparent image)
 });
 

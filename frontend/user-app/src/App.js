@@ -2,6 +2,7 @@
 import React, {  useState} from 'react';
 import axios from 'axios'
 import './App.css';
+import PieChart from './components/PieChart';
 
 const App=()=> {
   
@@ -50,12 +51,27 @@ const App=()=> {
     }
   };
 
-  const calll=()=>{
-    fetch('https://email-optimization.vercel.app/call')
-//   // fetch("http:localhost:3001/send-mail")
-  .then(res=>res.json())
-.then(json=>console.log(json))
-  }
+//   const calll=()=>{
+//     fetch('https://email-optimization.vercel.app/call')
+// //   // fetch("http:localhost:3001/send-mail")
+//   .then(res=>res.json())
+// .then(json=>console.log(json))
+//   }
+const [experimentData, setExperimentData] = useState(null);
+
+useEffect(() =>{
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://email-optimization.vercel.app/call');
+      const data = await response.json();
+      setExperimentData(data);
+    } catch (error) {
+      console.error('Error fetching experiment data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div>
@@ -97,7 +113,11 @@ const App=()=> {
         </div>
         <button type="submit">Submit</button>
       </form>
-      <button onClick={calll}>Get Analysis</button>
+      <button onClick={fetchData}>Get Analysis</button>
+      
+    <div>
+      {experimentData && <PieChart data={experimentData} />}
+    </div>
     </div>
   );
 }

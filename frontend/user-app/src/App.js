@@ -100,13 +100,6 @@ const App = () => {
         <button onClick={call1}>Reset</button>
       </div>
       <div>
-      {experimentData && experimentData.exp1 !== null && experimentData.exp2 !== null && experimentData.exp1 > experimentData.exp2 ? (
-  <p>Experiment 1 is more likely to yield favorable outcomes</p>
-) :experimentData && experimentData.exp1 !== null && experimentData.exp2 !== null && experimentData.exp2 !== 0 ? (
-  <p>Experiment 2 is more likely to yield favorable outcomes</p>
-) : null}
-
-
         {experimentData && <PieChart data={experimentData} />}
       </div>
     </div>

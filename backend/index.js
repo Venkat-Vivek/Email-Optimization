@@ -60,7 +60,7 @@ const sendEmail = (recipientEmail, subject, content) => {
     subject: subject,
     html: `
       <p>${content}</p>
-      <img src="${trackingPixelUrl}+${recipientEmail}" alt="pixel" style="width:1px;height:1px;" />
+      <img src="${trackingPixelUrl}${recipientEmail}" alt="pixel" style="width:1px;height:1px;" />
     `,
   };
 
@@ -110,9 +110,35 @@ app.post('/send-email', async (req, res) => {
 // const content = 'hello';
 //     console.log("Sending email to:", recipientEmail);
 console.log(recipientEmail1);
-    const response1 = await sendEmail(recipientEmail1, subject1, content1);
-    const response2 = await sendEmail(recipientEmail2, subject2, content2);
-    res.send({ response1, response2 });
+    const responses = [];
+  
+  // Iterate over each recipient email address
+  for (const recipientEmail of recipientEmail1) {
+    try {
+      // Send email to the current recipient
+      const response = await sendEmail(recipientEmail, subject1, content1);
+      responses.push(response);
+    } catch (error) {
+      // Handle any errors that occur during email sending
+      console.error(`Error sending email to ${recipientEmail}:`, error);
+      // Optionally, you can push a placeholder value or handle the error differently
+      responses.push(null);
+    }
+  }  
+  // Iterate over each recipient email address
+  for (const recipientEmail of recipientEmail2) {
+    try {
+      // Send email to the current recipient
+      const response = await sendEmail(recipientEmail, subject2, content2);
+      responses.push(response);
+    } catch (error) {
+      // Handle any errors that occur during email sending
+      console.error(`Error sending email to ${recipientEmail}:`, error);
+      // Optionally, you can push a placeholder value or handle the error differently
+      responses.push(null);
+    }
+  }
+    res.send({ responses });
   } catch (error) {
     res.status(500).send({ error: 'Failed to send email' });
   }

@@ -42,11 +42,12 @@ const emails = ['21131a05n8@gvpce.ac.in',
 'simhadrivenkatvivek@gmail.com','ramyarani0214@gmail.com',
 'venkatviveksimhadri@gmail.com']
 
-const midIndex = Math.ceil(shuffled.length / 2);
-const  recipientEmail1=  shuffled.slice(0, midIndex);
-  const  recipientEmail2= shuffled.slice(midIndex);
 
 const shuffled = shuffle(emails)
+
+const midIndex = Math.ceil(shuffled.length / 2);
+const  recipientEmail1=  shuffled.slice(0, midIndex);
+const  recipientEmail2= shuffled.slice(midIndex);
 // Tracking pixel URL
 const trackingPixelUrl = 'https://email-optimization.vercel.app/tracking-pixel/';
 

@@ -106,9 +106,7 @@ app.get('/tracking-pixel/:name', (req, res) => {
 app.post('/send-email', async (req, res) => {
   try {
     const { subject1, content1, subject2, content2 } = req.body;
-// const subject = 'hi';
-// const content = 'hello';
-//     console.log("Sending email to:", recipientEmail);
+
 console.log(recipientEmail1);
     const responses = [];
   

@@ -128,16 +128,33 @@ const sendEmail = (recipientEmail, subject, content) => {
 // Example email details
 
 
-// Endpoint to serve the tracking pixel
-app.get('/tracking-pixel', (req, res) => {
+// // Endpoint to serve the tracking pixel
+// app.get('/tracking-pixel', (req, res) => {
+//   console.log("+1");
+//   res.sendStatus(200); // Send a successful response
+// });
+
+app.get('/tracking-pixel', (req, res) =>{
   console.log("+1");
-  res.sendStatus(200); // Send a successful response
+  const pixelPath = path.join(backend, 'pixel.png');
+  fs.readFile(pixelPath, (err, data) => {
+    if (err) {
+      console.error('Error reading pixel file:', err);
+      res.sendStatus(500);
+      return;
+    }
+    res.writeHead(200, {
+      'Content-Type': 'image/png',
+      'Content-Length': data.length
+    });
+    res.end(data);
+  });
 });
 
 // Endpoint to trigger email sending
 app.get('/send-email', async (req, res) => {
   try {
-    const recipientEmail = 'simhadrivenkatvivek@gmail.com';
+    const recipientEmail = '21131a05n8@gvpce.ac.in';
 const subject = 'hi';
 const content = 'hello';
     console.log("Sending email to:", recipientEmail);

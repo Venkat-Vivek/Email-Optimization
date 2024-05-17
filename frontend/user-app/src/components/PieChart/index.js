@@ -1,17 +1,23 @@
 import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 const PieChart = ({ data }) => {
   const chartContainer = useRef(null);
+  const chartInstance = useRef(null);
 
   useEffect(() => {
-    if (chartContainer && chartContainer.current) {
+    if (chartContainer.current) {
+      if (chartInstance.current) {
+        chartInstance.current.destroy(); // Destroy previous chart instance
+      }
+
       const labels = Object.keys(data);
       const values = Object.values(data);
 
       const ctx = chartContainer.current.getContext('2d');
 
-      new Chart(ctx, {
+      chartInstance.current = new Chart(ctx, {
         type: 'pie',
         data: {
           labels: labels,

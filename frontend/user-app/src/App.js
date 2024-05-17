@@ -1,5 +1,5 @@
 
-import React, {  useState} from 'react';
+import React, {  useState, useEffect} from 'react';
 import axios from 'axios'
 import './App.css';
 import PieChart from './components/PieChart';
@@ -59,17 +59,17 @@ const App=()=> {
 //   }
 const [experimentData, setExperimentData] = useState(null);
 
-useEffect(() =>{
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://email-optimization.vercel.app/call');
-      const data = await response.json();
-      setExperimentData(data);
-    } catch (error) {
-      console.error('Error fetching experiment data:', error);
-    }
-  };
+const fetchData = async () => {
+  try {
+    const response = await fetch('https://email-optimization.vercel.app/call');
+    const data = await response.json();
+    setExperimentData(data);
+  } catch (error) {
+    console.error('Error fetching experiment data:', error);
+  }
+};
 
+useEffect(() =>{
   fetchData();
 }, []);
 

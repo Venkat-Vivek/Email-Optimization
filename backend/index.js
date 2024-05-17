@@ -135,21 +135,22 @@ const sendEmail = (recipientEmail, subject, content) => {
 // });
 
 app.get('/tracking-pixel', (req, res) =>{
-  console.log("+1");
-  // res.send({hi:"name"})
-  const pixelPath = path.join(__dirname, 'pixel.png');
-  fs.readFile(pixelPath, (err, data) => {
-    if (err) {
-      console.error('Error reading pixel file:', err);
-      res.sendStatus(500);
-      return;
-    }
-    res.writeHead(200, {
-      'Content-Type': 'image/png',
-      'Content-Length': data.length
-    });
-    res.end(data);
-  });
+  // console.log("+1");
+  // // res.send({hi:"name"})
+  // const pixelPath = path.join(__dirname, 'pixel.png');
+  // fs.readFile(pixelPath, (err, data) => {
+  //   if (err) {
+  //     console.error('Error reading pixel file:', err);
+  //     res.sendStatus(500);
+  //     return;
+  //   }
+  //   res.writeHead(200, {
+  //     'Content-Type': 'image/png',
+  //     'Content-Length': data.length
+  //   });
+  //   res.end(data);
+  // });
+  res.sendFile('pixel.png', { root: __dirname });
 });
 
 // Endpoint to trigger email sending

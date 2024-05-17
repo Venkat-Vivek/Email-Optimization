@@ -182,6 +182,8 @@ const content = 'hello';
 });
 
 app.get('/call',(req,res)=>{
+  console.log(ans);
+  ans=ans+1;
   res.send({count:ans})
 })
 

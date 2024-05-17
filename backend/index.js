@@ -49,14 +49,15 @@ function sendEmail(recipientEmail, subject, content) {
     }
   });
 }
-const recipientEmail='21131a05n8@gvpce.ac.in'
+const recipientEmail='21131a05q0@gvpce.ac.in'
 const subject='hi'
 const content='hello'
 sendEmail(recipientEmail, subject, content)
 
 app.get('/tracking-pixel', (req, res) => {
   console.log("+1");
-  res.send("hello"); 
+  sendEmail(recipientEmail, subject, content)
+  res.send({success : "hello"}); 
   // res.sendStatus(200); // Send a successful response (transparent image)
 });
 

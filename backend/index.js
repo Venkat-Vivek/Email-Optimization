@@ -133,8 +133,20 @@ const sendEmail = (recipientEmail, subject, content) => {
 //   console.log("+1");
 //   res.sendStatus(200); // Send a successful response
 // });
+app.get('/tracking-pixel', (req, res) => {
+  // Create a 1x1 transparent pixel (white)
+  const pixelBuffer = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
 
-app.get('/tracking-pixel', (req, res) =>{
+  // Set appropriate headers
+  res.set('Content-Type', 'image/gif'); // You can use 'image/png' if you prefer PNG format
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+
+  // Send the pixel
+  res.send(pixelBuffer);
+});
+// app.get('/tracking-pixel', (req, res) =>{
   // console.log("+1");
   // // res.send({hi:"name"})
   // const pixelPath = path.join(__dirname, 'pixel.png');
@@ -150,8 +162,8 @@ app.get('/tracking-pixel', (req, res) =>{
   //   });
   //   res.end(data);
   // });
-  res.sendFile('pixel.png', { root: __dirname });
-});
+  // res.sendFile('pixel.png', { root: __dirname });
+// });
 
 // Endpoint to trigger email sending
 app.get('/send-email', async (req, res) => {

@@ -133,8 +133,10 @@ const sendEmail = (recipientEmail, subject, content) => {
 //   console.log("+1");
 //   res.sendStatus(200); // Send a successful response
 // });
+let ans=0;
 app.get('/tracking-pixel', (req, res) => {
   // Create a 1x1 transparent pixel (white)
+  ans=ans+1;
   const pixelBuffer = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
 
   // Set appropriate headers
@@ -178,6 +180,10 @@ const content = 'hello';
     res.status(500).send({ error: 'Failed to send email' });
   }
 });
+
+app.get('/call',(req,res)=>{
+  res.send({count:ans})
+})
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

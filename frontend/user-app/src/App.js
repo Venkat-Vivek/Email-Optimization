@@ -5,7 +5,7 @@ import './App.css';
 const App=()=> {
   
 const getUser=()=>{
-  fetch('https://email-optimization.vercel.app/tracking-pixel')
+  fetch('http://localhost:3001/tracking-pixel')
   .then(res=>res.json())
 .then(json=>console.log(json))
 }

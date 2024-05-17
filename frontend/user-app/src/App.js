@@ -5,22 +5,6 @@ import './App.css';
 import PieChart from './components/PieChart';
 
 const App=()=> {
-  
-// const getUser=(event)=>{
-//   event.preventDefault();
-//   fetch('https://email-optimization.vercel.app/send-email')
-//   // fetch("http:localhost:3001/send-mail")
-//   .then(res=>res.json())
-// .then(json=>console.log(json))
-// }
-
-// const call=()=>{
-//   fetch('https://email-optimization.vercel.app/call')
-//   // fetch("http:localhost:3001/send-mail")
-//   .then(res=>res.json())
-// .then(json=>console.log(json))
-// }
-  
 
   // State to manage form input values
   const [formData, setFormData] = useState({
@@ -51,12 +35,7 @@ const App=()=> {
     }
   };
 
-//   const calll=()=>{
-//     fetch('https://email-optimization.vercel.app/call')
-// //   // fetch("http:localhost:3001/send-mail")
-//   .then(res=>res.json())
-// .then(json=>console.log(json))
-//   }
+
 const [experimentData, setExperimentData] = useState(null);
 
 const fetchData = async () => {
@@ -72,6 +51,12 @@ const fetchData = async () => {
 useEffect(() =>{
   fetchData();
 }, []);
+
+const call1 = ()=>{
+  fetch('https://email-optimization.vercel.app/call1')
+  .then(res=>res.json())
+  .then(json=>console.log(json))
+}
 
   return (
     <div>
@@ -118,6 +103,7 @@ useEffect(() =>{
     <div>
       {experimentData && <PieChart data={experimentData} />}
     </div>
+    <button onClick={call1}>Reset</button>
     </div>
   );
 }

@@ -148,6 +148,12 @@ app.get('/call',(req,res)=>{
   res.send({exp1:ans1,exp2:ans2})
 })
 
+app.get('/call1',(req,res)=>{
+  ans1 = 0;
+  ans2 = 0;
+  res.send({result:"success"})
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

@@ -1,7 +1,7 @@
 // import express from "express";
 const express = require("express");
-// // import  {MongoClient} from 'mongodb';
 
+const dotenv = require('dotenv');
 // import cors from 'cors';
 const cors = require("cors");
 const bodyParser = require('body-parser');
@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(cors());
-
+dotenv.config()
 // const port = 3001;
 app.use(bodyParser.json());
 
@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: 'venkatviveksimhadri@gmail.com', // Replace with your email
-    pass: 'tqztjckuykvgmvrq', // Replace with your password
+    pass: process.env.emailPassword, // Replace with your password
   }
 });
 

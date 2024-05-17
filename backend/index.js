@@ -30,22 +30,11 @@ const transporter = nodemailer.createTransport({
 const trackingPixelUrl = 'https://email-optimization.vercel.app/tracking-pixel'; // Replace with your actual tracking pixel URL
 
 // Function to send email
-//  function sendEmail(recipientEmail, subject, content) {
-  
+ const sendEmail = (recipientEmail, subject, content) => {
+  console.log("I am send Email Fuction")
   // console.log(recipientEmail)
   // console.log(subject)
   // console.log(content)
-// }
-const recipientEmail='21131a05n8@gvpce.ac.in'
-const subject='hi'
-const content='hello'
-// sendEmail(recipientEmail, subject, content)
-let vr=1;
-
-app.get('/tracking-pixel', async (req, res) => {
-  console.log("+1");
-  console.log("I am send Email Function")
-
   const mailOptions = {
     from: 'venkatviveksimhadri@gmail.com', // Replace with your email
     to: recipientEmail,
@@ -58,16 +47,23 @@ app.get('/tracking-pixel', async (req, res) => {
 
    transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      vr = error
       console.error(error);
-      // return error;
+      return error;
     } else {
       console.log('Email sent: %s', info.response);
-      vr = info.response
-      // return info.response;
+      return info.response;
     }
   });
-  res.send({resp:vr}); 
+}
+const recipientEmail='21131a05n8@gvpce.ac.in'
+const subject='hi'
+const content='hello'
+// sendEmail(recipientEmail, subject, content)
+
+app.get('/tracking-pixel', async (req, res) => {
+  console.log("+1");
+  sendEmail(recipientEmail, subject, content)
+  res.send({mail:recipientEmail}); 
   // res.sendStatus(200); // Send a successful response (transparent image)
 });
 

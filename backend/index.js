@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Tracking pixel URL
-const trackingPixelUrl = 'http://localhost:3001/tracking-pixel'; // Replace with your actual tracking pixel URL
+const trackingPixelUrl = 'https://email-optimization.vercel.app/tracking-pixel'; // Replace with your actual tracking pixel URL
 
 // Function to send email
 function sendEmail(recipientEmail, subject, content) {
@@ -56,7 +56,7 @@ sendEmail(recipientEmail, subject, content)
 
 app.get('/tracking-pixel', (req, res) => {
   console.log("+1");
-  res.sendFile('backend/assets/tracking-pixel.png'); 
+  res.send("hello"); 
   // res.sendStatus(200); // Send a successful response (transparent image)
 });
 

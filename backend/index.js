@@ -7,9 +7,7 @@ const cors = require("cors");
 
 // // // Enable CORS for all routes
 const app = express();
-app.use(cors({
-  origin: 'https://email-optimization-evga.vercel.app' // replace with your frontend's URL
-}));
+app.use(cors());
 
 // const port = 3001;
 app.use(bodyParser.json());

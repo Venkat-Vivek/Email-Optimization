@@ -82,7 +82,7 @@ let ans1=0, ans2=0;
 app.get('/tracking-pixel/:name', (req, res) => {
   // Create a 1x1 transparent pixel (white)
   const {name} = req.params
-  if(recipientEmail1.includes){
+  if(recipientEmail1.includes(name)){
     ans1=ans1+1
   }
   else{
@@ -108,6 +108,7 @@ app.post('/send-email', async (req, res) => {
 // const subject = 'hi';
 // const content = 'hello';
 //     console.log("Sending email to:", recipientEmail);
+console.log(recipientEmail1);
     const response1 = await sendEmail(recipientEmail1, subject1, content1);
     const response2 = await sendEmail(recipientEmail2, subject2, content2);
     res.send({ response1, response2 });

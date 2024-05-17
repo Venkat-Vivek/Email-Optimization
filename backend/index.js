@@ -136,9 +136,9 @@ const sendEmail = (recipientEmail, subject, content) => {
 
 app.get('/tracking-pixel', (req, res) =>{
   console.log("+1");
-  res.send({hi:"name"})
-  const pixelPath = path.join(backend, 'pixel.png');
-  fs.readFile(pixelPath, (err, data) => {
+  // res.send({hi:"name"})
+  // const pixelPath = path.join(backend, 'pixel.png');
+  fs.readFile('pixel.png', (err, data) => {
     if (err) {
       console.error('Error reading pixel file:', err);
       res.sendStatus(500);

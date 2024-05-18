@@ -136,7 +136,7 @@ const App = () => {
       <div>
         {experimentData && <PieChart data={experimentData} />}
       </div>
-      <Result experimentData = {experimentData}/>
+      <Result experimentData = {experimentData} info ={info}/>
     </div>
   );
 }

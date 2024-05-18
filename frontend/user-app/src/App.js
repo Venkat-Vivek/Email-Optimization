@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import PieChart from './components/PieChart';
@@ -55,9 +55,9 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const call1 = () => {
     setInfo('');
@@ -68,8 +68,8 @@ const App = () => {
       content2: ''
     });
     setEmails('');
-    const data = { exp1: 0, exp2: 0 };
-    setExperimentData(data);
+    // const data = { exp1: 0, exp2: 0 };
+    setExperimentData(null);
     fetch('https://email-optimization.vercel.app/call1')
       .then(res => res.json())
       .then(json => console.log(json));
